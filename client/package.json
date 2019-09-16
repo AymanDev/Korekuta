@@ -1,0 +1,49 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --mode development --hot",
+    "build": "NODE_ENV=production webpack --mode production"
+  },
+  "author": "AymanDev",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.2.0",
+    "@types/node": "^12.7.4",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "autoprefixer": "latest",
+    "css-loader": "^3.2.0",
+    "fibers": "^4.0.1",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "offline-plugin": "^5.0.7",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.22.10",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-brands-svg-icons": "^5.10.2",
+    "@fortawesome/free-regular-svg-icons": "^5.10.2",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
+    "tailwindcss": "^1.1.2"
+  }
+}
