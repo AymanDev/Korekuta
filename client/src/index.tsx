@@ -6,4 +6,4 @@ if (process.env.NODE_ENV === "production") {
   require("offline-plugin/runtime").install();
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));

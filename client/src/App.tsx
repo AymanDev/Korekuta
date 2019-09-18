@@ -12,7 +12,7 @@ class App extends React.Component<any, AppState> {
   constructor(props) {
     super(props);
 
-    this.state = { sticky: false };
+    this.state = {sticky: false};
   }
 
   componentDidMount() {
@@ -24,31 +24,19 @@ class App extends React.Component<any, AppState> {
   }
 
   handleScroll = () => {
-    this.setState({ sticky: window.pageYOffset > 60 });
+    this.setState({sticky: window.pageYOffset > 60});
   };
 
   render() {
     return (
       <div>
         <div className="w-full h-full">
-          <Menu sticky={this.state.sticky}></Menu>
-          <NewsFeed></NewsFeed>
+          <Menu sticky={this.state.sticky}/>
+          <NewsFeed/>
         </div>
       </div>
     );
   }
 }
-
-// const App = props => {
-//   const [sticky, setSticky] = React.useState<boolean>(false);
-//   React.useEffect(() => {
-//     setSticky(window.pageYOffset > 10);
-//     console.log(window.pageYOffset, sticky);
-//   }, [window.pageYOffset]);
-
-//   return (
-
-//   );
-// };
 
 export default App;

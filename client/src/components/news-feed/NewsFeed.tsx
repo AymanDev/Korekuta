@@ -4,10 +4,11 @@ import News from "./News";
 const preview = require("../../public/images/azur-lane.jpg");
 
 import "./news.pcss";
-import { NewsData } from "./NewsData";
+import {NewsData} from "./NewsData";
 import NewsReader from "./NewsReader";
 
-export interface NewsFeedProps {}
+export interface NewsFeedProps {
+}
 
 export interface NewsFeedState {
   readingNews: NewsData | null;
@@ -43,22 +44,23 @@ class NewsFeed extends React.Component<NewsFeedProps & any, NewsFeedState> {
 
   render() {
     return (
-      <div className="w-full h-full sm:px-5 py-64 sm:py-2 flex flex-col items-start justify-start container block mx-auto mt-24">
+      <div
+        className="w-full h-full sm:px-5 py-64 sm:py-2 flex flex-col items-start justify-start container block mx-auto mt-24">
         {this.state.news.map((newsData, index) => (
           <News
             title={newsData.title}
             shortDescription={newsData.shortDescription}
             description={newsData.description}
             image={newsData.image}
-            onClick={() => this.setState({ readingNews: newsData })}
+            onClick={() => this.setState({readingNews: newsData})}
             key={"news-" + index}
-          ></News>
+          />
         ))}
         {this.state.readingNews && (
           <NewsReader
             newsData={this.state.readingNews}
-            onClose={() => this.setState({ readingNews: null })}
-          ></NewsReader>
+            onClose={() => this.setState({readingNews: null})}
+          />
         )}
       </div>
     );
