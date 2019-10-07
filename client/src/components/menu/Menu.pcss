@@ -1,11 +1,12 @@
 .menu {
-  @apply w-full h-auto shadow-xl bg-white z-20 fixed top-0 p-6;
-
-  transition: padding 0.5s ease;
+  @apply w-full h-auto shadow-xl z-20 fixed top-0 p-6;
+  background: rgba(255, 255, 255, 0.75);
+  transition: padding 0.5s ease, background 0.5s ease;
 }
 
 .menu.menu-sticky {
   @apply py-1;
+  background: rgba(255, 255, 255, 1);
 }
 
 .menu-button {
@@ -41,6 +42,7 @@
 .user-button > svg {
   transition: filter 0.5s ease;
 }
+
 .user-button:hover > svg {
   filter: invert(1);
 }

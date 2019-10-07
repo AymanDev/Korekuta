@@ -1,8 +1,11 @@
 import React from "react";
 import Menu from "./components/menu/Menu";
 import NewsFeed from "./components/news-feed/NewsFeed";
+import {BrowserRouter, Route} from 'react-router-dom';
 
 import "./App.pcss";
+import AnimePage from './components/anime-page/anime-page';
+import {ANIME_PAGE_PATH, INDEX_PATH} from './Routes';
 
 export interface AppState {
   sticky: boolean;
@@ -29,12 +32,13 @@ class App extends React.Component<any, AppState> {
 
   render() {
     return (
-      <div>
+      <BrowserRouter>
         <div className="w-full h-full">
           <Menu sticky={this.state.sticky}/>
-          <NewsFeed/>
+          <Route exact={true} path={INDEX_PATH} component={NewsFeed}/>
+          <Route exact={true} path={ANIME_PAGE_PATH} component={AnimePage}/>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

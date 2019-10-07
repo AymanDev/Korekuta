@@ -11,7 +11,7 @@ export interface NewsProps {
 }
 
 const News = (props: NewsProps) => (
-  <div className="w-full h-full my-2 px-1 shadow-2xl rounded flex flex-col justify-center items-center">
+  <div className="w-full h-full my-2 shadow-2xl bg-white rounded flex flex-col justify-center items-center">
     <a className="news-header" onClick={props.onClick}>
       <img
         src={props.image}
