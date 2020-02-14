@@ -33,21 +33,9 @@ module.exports = {
             options: { hmr: process.env.NODE_ENV === "development" }
           },
           "css-loader",
-          "postcss-loader"
         ],
         include: [path.join(__dirname, "src"), /node_modules/]
       },
-      // {
-      //   test: /\.(jpg|jpeg|png|gif)$/,
-      //   use: [
-      //     {
-      //       loader: "url-loader",
-      //       options: {
-      //         limit: 10000
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.(png|jpeg|jpg|gif|svg|eot)$/,
         use: [
