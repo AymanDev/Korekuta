@@ -1,9 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OfflinePlugin = require("offline-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: "./src/index.tsx",
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
@@ -12,29 +12,11 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "bundle.min.js?v=[hash:6]"
   },
-  devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 9000,
-    disableHostCheck: true,
-    historyApiFallback: true
-  },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)?$/,
         loader: "ts-loader"
-      },
-      {
-        test: /\.(pc|sa|sc|c)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { hmr: process.env.NODE_ENV === "development" }
-          },
-          "css-loader",
-        ],
-        include: [path.join(__dirname, "src"), /node_modules/]
       },
       {
         test: /\.(png|jpeg|jpg|gif|svg|eot)$/,
@@ -64,14 +46,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
-      ignoreOrder: false
-    })
+    new Dotenv()
   ]
 };
-
-if (process.env.NODE_ENV === "production") {
-  module.exports.plugins.push(new OfflinePlugin());
-}
