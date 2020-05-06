@@ -1,37 +1,73 @@
 import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
+import {
+  ApolloServer,
+  gql,
+  UserInputError,
+  ValidationError
+} from "apollo-server-express";
 import { User } from "./models";
+import crypto from "crypto";
+
+require("dotenv").config();
 
 import("./config");
 
 const typeDefs = gql`
   type User {
-    id: ID!
-    userName: String
+    _id: ID!
+    username: String
     email: String
+    password: String
   }
 
   type Query {
-    getUsers: [User]
+    getUsers(username: String): [User]
+    getUser(id: Int): User
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!): User
+    registerUser(username: String!, email: String!, password: String!): User
   }
 `;
 
+const getUsers = async (_, { username }) => {
+  const query: Record<string, string> = {};
+  if (username) {
+    query.username = username;
+  }
+  return await User.find(query)
+    .select("-password")
+    .select("-email")
+    .exec();
+};
+const getUser = async (_, { id }) => await User.findOne({ _id: id }).exec();
+
+const registerUser = async (_, { username, email, password }) => {
+  const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/g;
+  if (!emailRegex.test(email)) {
+    throw new UserInputError("Email is not valid!", { invalidArgs: "email" });
+  }
+
+  if (password.length < 3) {
+    throw new ValidationError("Password is too short!");
+  }
+
+  const secretKey = process.env.SECRET_KEY;
+  const hashedPassword = crypto
+    .createHmac("sha256", secretKey)
+    .update(password)
+    .digest("hex");
+
+  return await User.create({ username, email, password: hashedPassword });
+};
+
 const resolvers = {
   Query: {
-    getUsers: async () => await User.find({}).exec()
+    getUsers,
+    getUser
   },
   Mutation: {
-    addUser: async (_, args) => {
-      try {
-        return await User.create(args);
-      } catch (e) {
-        return e.message;
-      }
-    }
+    registerUser
   }
 };
 
