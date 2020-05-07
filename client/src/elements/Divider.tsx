@@ -8,6 +8,8 @@ const Divider = styled.div<DividerProps>`
   background: ${props => props.color};
   width: ${props => (props.vertical ? "1px" : "100%")};
   height: ${props => (props.vertical ? "100%" : 0)};
+
+  margin: ${props => (props.vertical ? "0 10px" : "10px 0")};
 `;
 Divider.defaultProps = {
   color: "rgba(255,255,255,0.5)",

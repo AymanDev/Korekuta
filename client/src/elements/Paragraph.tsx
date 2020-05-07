@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export interface ParagraphProps {
-  fontSize?: number;
-  weight?: string;
+  fontSize?: number | string;
+  weight?: number | string;
 }
 const Paragraph = styled.p<ParagraphProps>`
   font-size: ${props => props.fontSize}px;
@@ -13,6 +13,6 @@ const Paragraph = styled.p<ParagraphProps>`
 `;
 Paragraph.defaultProps = {
   fontSize: 12,
-  weight: "normal"
+  weight: "400"
 };
 export default Paragraph;

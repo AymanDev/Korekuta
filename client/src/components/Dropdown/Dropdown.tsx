@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DROPDOWN_BACKGROUND_COLOR } from "../../values";
+import { BORDER, BUTTON_BACKGROUND_COLOR } from "../../values";
 import { withModal } from "../../utils/hoc";
 
 export interface DropdownListProps {}
@@ -14,7 +14,7 @@ const DropdownListWrapper = styled.div<DropdownListProps>`
 
   border-radius: 0 0 5px 5px;
 
-  background: ${DROPDOWN_BACKGROUND_COLOR};
+  background: ${BUTTON_BACKGROUND_COLOR};
 
   transition: all ease 0.25s;
 `;
@@ -36,7 +36,8 @@ const Wrapper = styled.div`
   min-height: 20px;
   padding: 7px;
 
-  background: ${DROPDOWN_BACKGROUND_COLOR};
+  background: ${BUTTON_BACKGROUND_COLOR};
+  border: ${BORDER};
   border-radius: 5px;
 
   font-size: 16px;
