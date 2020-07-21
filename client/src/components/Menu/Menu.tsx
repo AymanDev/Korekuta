@@ -3,14 +3,14 @@ import React from "react";
 import Paragraph from "../../elements/Paragraph";
 import Divider from "../../elements/Divider";
 import Dropdown from "../Dropdown";
-import { DropdownListItem } from "../Dropdown/Dropdown";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons/faUserCircle";
 import { faUserCircle as faUserCircleSolid } from "@fortawesome/free-solid-svg-icons/faUserCircle";
 import history from "../../history";
 import { REGISTER_PATH } from "../../routes";
-import { BORDER, MAIN_COLOR } from "../../values";
+import { MAIN_COLOR } from "../../values";
+import DropdownListItem from "../Dropdown/DropdownListItem";
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,7 +38,6 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
-
 `;
 
 const Menu = ({}) => {
@@ -52,8 +51,8 @@ const Menu = ({}) => {
         <Paragraph fontSize={32}>Korekuta</Paragraph>
         <Divider />
       </LogoWrapper>
-      <Dropdown title={"Anime"}>
-        <DropdownListItem>1</DropdownListItem>
+      <Dropdown title="Games">
+        <DropdownListItem>Nintendo Switch</DropdownListItem>
       </Dropdown>
       <EndBlock>
         <Button onClick={handleRegisterClick}>

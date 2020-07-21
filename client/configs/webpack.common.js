@@ -6,17 +6,21 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: "./src/index.tsx",
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
   },
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "bundle.min.js?v=[hash:6]"
+    filename: "bundle.min.js?v=[hash:6]",
   },
   module: {
     rules: [
       {
         test: /\.(tsx|ts)?$/,
-        loader: "ts-loader"
+        loader: "ts-loader",
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|jpeg|jpg|gif|svg|eot)$/,
@@ -24,10 +28,10 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: "./images/"
-            }
-          }
-        ]
+              outputPath: "./images/",
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff2?|otf)$/,
@@ -35,17 +39,17 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: "./fonts/"
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: "./fonts/",
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.html",
     }),
-    new Dotenv()
-  ]
+    new Dotenv(),
+  ],
 };

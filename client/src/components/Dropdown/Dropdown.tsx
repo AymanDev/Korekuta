@@ -1,31 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BORDER, BUTTON_BACKGROUND_COLOR } from "../../values";
-import { withModal } from "../../utils/hoc";
-
-export interface DropdownListProps {}
-const DropdownListWrapper = styled.div<DropdownListProps>`
-  position: absolute;
-  top: 32px;
-  left: 0;
-  width: 100%;
-
-  border-radius: 0 0 5px 5px;
-
-  background: ${BUTTON_BACKGROUND_COLOR};
-
-  transition: all ease 0.25s;
-`;
-const DropdownList = withModal(({ visible, onClickOutside, children }) => {
-  return <DropdownListWrapper>{visible && children}</DropdownListWrapper>;
-});
-
-export const DropdownListItem = styled.div`
-  color: white;
-  margin: 10px;
-`;
+import { useModal } from "../../utils/hooks";
+import DropdownList from "./DropdownList";
 
 const Wrapper = styled.div`
   position: relative;
@@ -62,17 +41,19 @@ const Dropdown: React.FC<DropdownProps> = ({
   onClick,
   ...rest
 }) => {
+  const { ref, open, setOpen } = useModal<HTMLDivElement>();
+
+  const handleClick = (e: React.MouseEvent) => {
+    setOpen((prev) => !prev);
+    onClick && onClick(e);
+    e.preventDefault();
+  };
+
   return (
-    <Wrapper
-      {...rest}
-      onClick={e => {
-        onClick(e);
-        e.preventDefault();
-      }}
-    >
+    <Wrapper {...rest} onClick={handleClick} ref={ref}>
       <FontAwesomeIcon size={"1x"} icon={faAngleDown} />
       <Title>{title}</Title>
-      <DropdownList>{children}</DropdownList>
+      <DropdownList visible={open}>{children}</DropdownList>
     </Wrapper>
   );
 };
