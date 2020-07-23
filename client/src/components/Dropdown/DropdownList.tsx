@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { BASIC_TRANSITION, BORDER, BORDER_RADIUS, BUTTON_BACKGROUND_COLOR } from '../../values';
+import { BASIC_TRANSITION, BORDER, BORDER_RADIUS, BUTTON_BACKGROUND_COLOR, DROPDOWN_MAX_HEIGHT } from '../../values';
 
 export interface DropdownListWrapperProps {
     visible: boolean;
     offset?: number;
 }
+
 const DropdownListWrapper = styled.div<DropdownListWrapperProps>`
     position: absolute;
     top: ${props => props.offset || 36}px;
@@ -17,10 +18,10 @@ const DropdownListWrapper = styled.div<DropdownListWrapperProps>`
 
     background: ${BUTTON_BACKGROUND_COLOR};
 
+    overflow: hidden;
+    max-height: ${props => (props.visible ? DROPDOWN_MAX_HEIGHT : 0)}px;
+    visibility: ${props => (props.visible ? 'visible' : 'hidden')};
     transition: ${BASIC_TRANSITION};
-
-    max-height: ${props => (props.visible ? 500 : 0)}px;
-    display: ${props => (props.visible ? 'block' : 'none')};
 `;
 export interface DropdownListProps {
     visible: boolean;
