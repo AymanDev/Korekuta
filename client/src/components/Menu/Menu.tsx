@@ -12,7 +12,7 @@ import Divider from '../../elements/Divider';
 import Dropdown from '../Dropdown';
 import Button from '../Button';
 
-import { REGISTER_PATH } from '../../routes';
+import { GAMES_PATH, REGISTER_PATH } from '../../routes';
 import { MAIN_COLOR } from '../../values';
 
 const Wrapper = styled.div`
@@ -55,7 +55,7 @@ const Menu = () => {
                 <Divider />
             </LogoWrapper>
             <Dropdown title="Games">
-                <DropdownListItem>Nintendo Switch</DropdownListItem>
+                <DropdownListItem to={GAMES_PATH}>Nintendo Switch</DropdownListItem>
             </Dropdown>
             <EndBlock>
                 <Button onClick={handleRegisterClick}>

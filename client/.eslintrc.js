@@ -14,6 +14,9 @@ module.exports = {
     ],
     parserOptions: {
         project: './tsconfig.json',
+        ecmaFeatures: {
+            jsx: true,
+        },
     },
     plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
     settings: {
@@ -28,8 +31,9 @@ module.exports = {
         'react/prop-types': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
+        'react/display-name': 'off',
         'jsx-quotes': [1, 'prefer-double'],
         'react/jsx-props-no-spreading': 'off',
-        '@typescript-eslint/no-unused-expressions':'off'
+        '@typescript-eslint/no-unused-expressions': 'off',
     },
 };

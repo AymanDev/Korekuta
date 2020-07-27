@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BORDER, BUTTON_BACKGROUND_COLOR } from '../../values';
-import { useModal } from '../../utils/hooks';
 import DropdownList from './DropdownList';
+import { useModal } from '../../utils/hooks';
 
 const Wrapper = styled.div`
     position: relative;

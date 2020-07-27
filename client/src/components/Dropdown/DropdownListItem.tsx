@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 
 import { BASIC_TRANSITION, BORDER_RADIUS, BUTTON_BACKGROUND_COLOR } from '../../values';
+import { withLink } from '../../utils/hocs';
 
-const DropdownListItem = styled.div`
+export const DropdownListItemComponent = styled.div`
     height: 40px;
     color: white;
     padding: 10px;
@@ -25,4 +26,6 @@ const DropdownListItem = styled.div`
         background: ${lighten(0.1, BUTTON_BACKGROUND_COLOR)};
     }
 `;
-export default DropdownListItem;
+
+
+export default withLink(DropdownListItemComponent);

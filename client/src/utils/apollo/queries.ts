@@ -8,6 +8,15 @@ export const GET_USERS = gql`
         }
     }
 `;
+export const GET_GAME = gql`
+    query getGame($id: String) {
+        getGame(id: $id) {
+            _id
+            name
+        }
+    }
+`;
+
 export const REGISTER_USER = gql`
     mutation registerUser($username: String!, $password: String!, $email: String!) {
         registerUser(username: $username, password: $password, email: $email) {

@@ -1,41 +1,19 @@
 import mongoose, { Schema } from "mongoose";
 
-const SocialMediaScheme = {
-  name: String,
-  nickname: String
-};
 
-const userSchema = new Schema({
-  username: String,
-  password: String,
-  email: String,
-  platforms: [String],
-  languages: [String],
-  regions: [String],
-  socials: [SocialMediaScheme]
-});
 
-export const User = mongoose.model("user", userSchema);
-
-const LangSchema = {
+const LangSchema = new Schema({
   lang: String,
-  text: String
-};
-
-const CommentSchema = {
-  id: Schema.Types.ObjectId,
   text: String,
-  rating: {
-    positive: Number,
-    negative: Number
-  }
-};
+});
 
 const gameSchema = new Schema({
   titles: [LangSchema],
   platforms: [LangSchema],
   descriptions: [LangSchema],
-  comments: [CommentSchema]
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 });
 
-export const Game = mongoose.model("game", gameSchema);
+const Game = mongoose.model("game", gameSchema);
+
+export default Game;

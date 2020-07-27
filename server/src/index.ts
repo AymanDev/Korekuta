@@ -3,10 +3,12 @@ import {
   ApolloServer,
   gql,
   UserInputError,
-  ValidationError
+  ValidationError,
 } from "apollo-server-express";
-import { User } from "./models";
 import crypto from "crypto";
+import { Types } from "mongoose";
+import User from "./models/User";
+import Game from './models';
 
 require("dotenv").config();
 
@@ -19,10 +21,15 @@ const typeDefs = gql`
     email: String
     password: String
   }
+  type Game {
+    _id: ID!
+    name: String
+  }
 
   type Query {
     getUsers(username: String): [User]
     getUser(id: Int): User
+    getGame(id: String): Game
   }
 
   type Mutation {
@@ -35,15 +42,12 @@ const getUsers = async (_, { username }) => {
   if (username) {
     query.username = username;
   }
-  return await User.find(query)
-    .select("-password")
-    .select("-email")
-    .exec();
+  return User.find(query).select("-password").select("-email").exec();
 };
-const getUser = async (_, { id }) => await User.findOne({ _id: id }).exec();
+const getUser = async (_, { id }) => User.findOne({ _id: id }).exec();
 
 const registerUser = async (_, { username, email, password }) => {
-  const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/g;
+  const emailRegex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/g;
   if (!emailRegex.test(email)) {
     throw new UserInputError("Email is not valid!", { invalidArgs: "email" });
   }
@@ -58,17 +62,30 @@ const registerUser = async (_, { username, email, password }) => {
     .update(password)
     .digest("hex");
 
-  return await User.create({ username, email, password: hashedPassword });
+  return User.create({ username, email, password: hashedPassword });
+};
+
+const getGame = async (_, { id }) => {
+  if (!id || typeof id !== "string") {
+    throw new ValidationError("Please provide a valid game ID!");
+  }
+
+  if (!Types.ObjectId.isValid(id)) {
+    return null;
+  }
+
+  return Game.findOne({ _id: id }).exec();
 };
 
 const resolvers = {
   Query: {
     getUsers,
-    getUser
+    getUser,
+    getGame,
   },
   Mutation: {
-    registerUser
-  }
+    registerUser,
+  },
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });

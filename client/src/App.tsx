@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import history from './history';
@@ -13,6 +13,12 @@ import RegisterPage from './pages/RegisterPage';
 
 import { GAMES_ROUTE, INDEX_PATH, REGISTER_PATH } from './routes';
 
+const GlobalStyle = createGlobalStyle`
+  a {
+    text-decoration: none;
+  }
+`;
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -22,6 +28,7 @@ const Wrapper = styled.div`
 const App = () => {
     return (
         <ApolloProvider client={client}>
+            <GlobalStyle />
             <Wrapper>
                 <Router history={history}>
                     <Menu />

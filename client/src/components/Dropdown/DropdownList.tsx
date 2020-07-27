@@ -7,7 +7,6 @@ export interface DropdownListWrapperProps {
     visible: boolean;
     offset?: number;
 }
-
 const DropdownListWrapper = styled.div<DropdownListWrapperProps>`
     position: absolute;
     top: ${props => props.offset || 36}px;
@@ -19,7 +18,7 @@ const DropdownListWrapper = styled.div<DropdownListWrapperProps>`
     background: ${BUTTON_BACKGROUND_COLOR};
 
     overflow: hidden;
-    max-height: ${props => (props.visible ? DROPDOWN_MAX_HEIGHT : 0)}px;
+    max-height: ${props => (props.visible ? DROPDOWN_MAX_HEIGHT : 0)};
     visibility: ${props => (props.visible ? 'visible' : 'hidden')};
     transition: ${BASIC_TRANSITION};
 `;
