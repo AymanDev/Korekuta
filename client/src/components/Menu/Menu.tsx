@@ -1,47 +1,18 @@
-import styled from 'styled-components';
-import React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faUserCircle as faUserCircleSolid } from '@fortawesome/free-solid-svg-icons/faUserCircle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
-import history from '../../history';
-import DropdownListItem from '../Dropdown/DropdownListItem';
-import Paragraph from '../../elements/Paragraph';
 import Divider from '../../elements/Divider';
-import Dropdown from '../Dropdown';
+import Paragraph from '../../elements/Paragraph';
+import history from '../../history';
+import { GAMES_PATH, LOGIN_PATH, REGISTER_PATH } from '../../routes';
 import Button from '../Button';
+import Dropdown from '../Dropdown';
+import DropdownListItem from '../Dropdown/DropdownListItem';
+import NavLink from '../NavLink';
 
-import { GAMES_PATH, REGISTER_PATH } from '../../routes';
-import { MAIN_COLOR } from '../../values';
-
-const Wrapper = styled.div`
-    display: flex;
-
-    background: ${MAIN_COLOR};
-    color: white;
-
-    padding: 10px;
-    max-height: 40px;
-
-    font-size: 14px;
-`;
-
-const EndBlock = styled.div`
-    margin-left: auto;
-    display: flex;
-    flex-direction: row;
-
-    *:not(:last-child) {
-        margin-right: 5px;
-    }
-`;
-
-const LogoWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-`;
+import styles from './Menu.module.scss';
 
 const Menu = () => {
     const handleRegisterClick = () => {
@@ -49,25 +20,29 @@ const Menu = () => {
     };
 
     return (
-        <Wrapper>
-            <LogoWrapper>
-                <Paragraph fontSize={32}>Korekuta</Paragraph>
+        <div className={styles.wrapper}>
+            <div className={styles.logo}>
+                <NavLink to="/">
+                    <Paragraph fontSize={32}>Korekuta</Paragraph>
+                </NavLink>
                 <Divider />
-            </LogoWrapper>
+            </div>
             <Dropdown title="Games">
                 <DropdownListItem to={GAMES_PATH}>Nintendo Switch</DropdownListItem>
             </Dropdown>
-            <EndBlock>
+            <div className={styles.end}>
                 <Button onClick={handleRegisterClick}>
                     <FontAwesomeIcon icon={faUserCircle} />
                     <span>Register</span>
                 </Button>
                 <Button>
-                    <FontAwesomeIcon icon={faUserCircleSolid} />
-                    <span>Login</span>
+                    <NavLink to={LOGIN_PATH}>
+                        <FontAwesomeIcon icon={faUserCircleSolid} />
+                        <span>Login</span>
+                    </NavLink>
                 </Button>
-            </EndBlock>
-        </Wrapper>
+            </div>
+        </div>
     );
 };
 

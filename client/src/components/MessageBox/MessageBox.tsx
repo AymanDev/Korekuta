@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Paragraph from '../../elements/Paragraph';
-
 import { BORDER_RADIUS } from '../../values';
 
 interface WrapperProps {
@@ -19,6 +18,7 @@ const Wrapper = styled.div<WrapperProps>`
 
     min-width: 200px;
     min-height: 10px;
+    color: black;
 `;
 
 interface MessageBoxProps {

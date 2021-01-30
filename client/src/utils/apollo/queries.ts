@@ -16,13 +16,3 @@ export const GET_GAME = gql`
         }
     }
 `;
-
-export const REGISTER_USER = gql`
-    mutation registerUser($username: String!, $password: String!, $email: String!) {
-        registerUser(username: $username, password: $password, email: $email) {
-            username
-            email
-            password
-        }
-    }
-`;

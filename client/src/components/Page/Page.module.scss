@@ -1,0 +1,14 @@
+@import 'styles/colors';
+@import 'styles/sizes';
+
+.wrapper {
+    display: flex;
+    padding: 25px;
+
+    border-radius: $border-radius;
+
+    color: $text-color;
+
+    background: rgba($main-color, 0.75);
+    backdrop-filter: blur($blur-size);
+}

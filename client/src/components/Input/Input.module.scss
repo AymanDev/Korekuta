@@ -1,0 +1,15 @@
+@import 'styles/colors';
+@import 'styles/sizes';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    border: $border-color;
+    border-radius: $border-radius;
+
+    padding: 5px;
+    margin-top: 5px;
+}

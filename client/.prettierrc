@@ -12,5 +12,7 @@
     "insertPragma": false,
     "quoteProps": "preserve",
     "vueIndentScriptAndStyle": false,
-    "requirePragma": false
+    "requirePragma": false,
+    "importOrder": ["(\\.\\.\\/.*)", "(\\.\\/.*)", ".s([ac])ss$"],
+    "importOrderSeparation": true
 }

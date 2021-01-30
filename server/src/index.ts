@@ -1,4 +1,3 @@
-import express from "express";
 import {
   ApolloServer,
   gql,
@@ -6,9 +5,10 @@ import {
   ValidationError,
 } from "apollo-server-express";
 import crypto from "crypto";
+import express from "express";
 import { Types } from "mongoose";
 import User from "./models/User";
-import Game from './models';
+import Game from "./models";
 
 require("dotenv").config();
 
@@ -33,7 +33,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    registerUser(username: String!, email: String!, password: String!): User
+    registerUser(
+      username: String!
+      email: String!
+      password: String!
+      repeatPassword: String!
+    ): Boolean
   }
 `;
 
@@ -62,7 +67,7 @@ const registerUser = async (_, { username, email, password }) => {
     .update(password)
     .digest("hex");
 
-  return User.create({ username, email, password: hashedPassword });
+  return !!(await User.create({ username, email, password: hashedPassword }));
 };
 
 const getGame = async (_, { id }) => {

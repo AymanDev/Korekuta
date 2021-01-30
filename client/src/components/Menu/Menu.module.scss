@@ -1,0 +1,29 @@
+@import 'styles/colors';
+@import 'styles/sizes';
+
+.wrapper {
+    display: flex;
+
+    padding: 10px;
+
+    background: rgba($main-color, 0.75);
+    backdrop-filter: blur($blur-size);
+
+    color: $text-color;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.end {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+
+    *:not(:last-child) {
+        margin-right: 5px;
+    }
+}
