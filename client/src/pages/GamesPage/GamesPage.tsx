@@ -1,7 +1,8 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import GameList from './GameList';
+import React from 'react';
+
 import Game from './Game';
+import GameList from './GameList';
 
 const GamesPage = () => {
     const { id } = useParams();

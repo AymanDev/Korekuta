@@ -25,6 +25,23 @@ module.exports = env => {
                     use: 'ts-loader',
                 },
                 {
+                    test: /\.module\.less$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                                modules: {
+                                    localIdentName: '[folder]_[local]_[hash:base64:5]',
+                                    exportLocalsConvention: 'camelCase',
+                                },
+                            },
+                        },
+                        'less-loader',
+                    ],
+                },
+                {
                     test: /\.module\.s(a|c)ss$/,
                     use: [
                         isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,

@@ -1,9 +1,7 @@
+import '../styles/global.scss';
 import { ApolloProvider } from '@apollo/react-hooks';
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-
-import '../styles/global.scss';
-
 import Menu from './components/Menu';
 import history from './history';
 import GamesPage from './pages/GamesPage';

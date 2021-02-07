@@ -1,11 +1,10 @@
 import { Form } from 'formik';
 import React from 'react';
-import styled from 'styled-components';
 
 import Button from '../../components/Button';
+import InputField from '../../components/forms/InputField';
 import MessageBox from '../../components/MessageBox';
 import Page from '../../components/Page';
-import InputField from '../../components/forms/InputField';
 import Paragraph from '../../elements/Paragraph';
 
 import styles from './RegisterPage.module.scss';

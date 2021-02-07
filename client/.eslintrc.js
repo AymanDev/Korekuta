@@ -11,6 +11,8 @@ module.exports = {
         'prettier',
         'prettier/react',
         'prettier/@typescript-eslint',
+        'plugin:import/errors',
+        'plugin:import/warnings',
     ],
     parserOptions: {
         project: './tsconfig.json',
