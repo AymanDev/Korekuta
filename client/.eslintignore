@@ -1,4 +1,4 @@
-.eslintrc.js
+**/.eslintrc.js
 configs
 
 # don't ever lint node_modules

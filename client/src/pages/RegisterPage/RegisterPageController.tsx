@@ -1,10 +1,9 @@
-import { useMutation } from '@apollo/react-hooks';
-
 import { Formik, FormikValues } from 'formik';
 import React from 'react';
 
-import { REGISTER_USER } from '../../utils/apollo/mutations';
+import { useMutation } from '@apollo/react-hooks';
 
+import { REGISTER_USER } from '../../utils/apollo/mutations';
 import RegisterPageView from './RegisterPageView';
 
 const RegisterPageController = () => {

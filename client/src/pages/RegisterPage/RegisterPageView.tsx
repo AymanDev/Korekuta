@@ -6,7 +6,6 @@ import InputField from '../../components/forms/InputField';
 import MessageBox from '../../components/MessageBox';
 import Page from '../../components/Page';
 import Paragraph from '../../elements/Paragraph';
-
 import styles from './RegisterPage.module.scss';
 
 const RegisterPageView = () => {

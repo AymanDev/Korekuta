@@ -14,5 +14,6 @@
 # Dependency directories (remove the comment below to include it)
 server/vendor
 client/node_modules
+client/dist
 
 .idea/
